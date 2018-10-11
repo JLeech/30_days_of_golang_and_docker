@@ -25,31 +25,34 @@ suppport up to 128 lower OverlayFS layers
 **SquashFS** - creates archive with fast read(need CPU, decompression), more expensive to change. People use for USB/live file systems
 
 
+#### Overview
 
-#### Docker installation
-```bash
-sudo apt-get update
-sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common
+Client <-Sockets/Hetwork-> Daemon
 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
+Daemon manage images, containers, network and volumes
+Daemon <-> Daemon
+Client <-> Daemon_1
+	   <-> Daemon_2
 
-sudo apt-get update
+user <-> Client <-> Daemon
 
-sudo apt-get install docker-ce
-sudo docker run hello-world
+**Docker registry** - store Docker images. can be private.
+**Dockerfile** - is used to customise images. Each command create separate layer(up to 128?) DETAILS?
+**Container** - is runnable instance of image.
+**Services** - tool to manage many containers. DETAILS?
 
-```
+##### Technologies
+**[Namespaces](https://en.wikipedia.org/wiki/Linux_namespaces)** : container like a lone user of system.
 
-#### Docker Uninstall
-```bash
-sudo apt-get purge docker-ce
-sudo rm -rf /var/lib/docker
-```
+*pid*: (PID: Process ID) - ID inside namespaces uniq, but can intersect between namespaces. 
+*net*: (NET: Networking). manage virtual interfaces and their connections
+*ipc*: Managing access to IPC resources (IPC: InterProcess Communication). **READ**
+*mnt*: Managing filesystem mount points (MNT: Mount). 
+*uts*: Isolating kernel and version identifiers. (UTS: Unix Timesharing System). **READ**
+
+**Control** : 
+**UnionFS** : see LayerFS
+**Container** : 
+
+
+#### DockerFile
