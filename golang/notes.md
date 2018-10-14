@@ -35,7 +35,7 @@ copy(longer, x)
 x = longer
 ```
 to grow. All this functions *COPY* the underlying array. 
-If any, even one-element slice is connected with array, the whole array is exists.
+If any, even one-element slice is connected with array, the whole array exists.
 
 ### Functions
 Pass parameters by value.
