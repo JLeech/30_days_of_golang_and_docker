@@ -118,3 +118,10 @@ if smt starts with Capital letter - it is exported(public), otherwise private
 ### Interfaces
 
 cast interface to inner struct: interface.(structName). It is possible to cast interface to interface.
+[Interfaces/readtomorrow](https://www.tapirgames.com/blog/golang-interface-implementation)
+
+### Garbage Collector
+concurrent/tri-color/mark-sweep
+**concurrent**:  ~no stop of the world 
+**tri-color(white/gray/black)**: heap is a graph of objects. At the start of GC round all objects a white. Go throught root objects: global variables and call stack. mark all of them as gray. Select one grey object, go deeper by references and mark all white as gray. Repeate while no gray left(how they keep counter?). All white are unreachable and can be deleted.
+**mark-sweep**: mark unreachable objects/get rid of them
