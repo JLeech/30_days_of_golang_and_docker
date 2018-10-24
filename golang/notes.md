@@ -1,6 +1,13 @@
 go run file.go - compile + run code
 gofmt -r  - format and rewrite file 
 
+### For
+
+```
+MARK:
+ for {}
+```
+MARK - mark of for. can call ```break MARK ```
 
 ### Arrays and slice internals
 
@@ -125,3 +132,42 @@ concurrent/tri-color/mark-sweep
 **concurrent**:  ~no stop of the world 
 **tri-color(white/gray/black)**: heap is a graph of objects. At the start of GC round all objects a white. Go throught root objects: global variables and call stack. mark all of them as gray. Select one grey object, go deeper by references and mark all white as gray. Repeate while no gray left(how they keep counter?). All white are unreachable and can be deleted.
 **mark-sweep**: mark unreachable objects/get rid of them
+
+
+### Coroutines
+add **go** for function call to call it in separate goroutine
+
+runtime.Goshed() - pass execution to other goroutine
+runtime - package to control go runtime system and goroutines
+Goshed() - yields the processor, allowing other goroutines to run
+
+switching between goroutins is possible only on functions call
+
+### Channels
+pass data ownership to other goroutine
+```golang
+make(chan type, bufferize)
+
+value := <-channel // read from channel
+channel <- value //add value to channel
+```
+channels are not buffered by default
+```channel <-chan int``` - only read channel
+```channel chan<= int``` - only write channel
+
+```select{case  val <- ch1}``` - switch for channels
+select check channels for read/write.
+select selects random case to evaluate
+
+```ticker := time.NewTicker(time.Second)``` - new tick every second to ticker. 
+get ticker channel: ticker.C 
+```ticker.Stop()```
+```time.Tick()``` - return channel. imposible to stop
+```time.AfterFunc(1 * time.Second(), functionToCall)```- call function on tick
+
+#### contexts
+interface to control channels in context
+```ctx, finish := context.WithCancel(context.Background())```
+```finish()``` - function to stop context. push to ```context.Done()``` channel
+```context.WithTimeout(context.Background(), workTime)```
+workTime - time for context to live
