@@ -171,3 +171,15 @@ interface to control channels in context
 ```finish()``` - function to stop context. push to ```context.Done()``` channel
 ```context.WithTimeout(context.Background(), workTime)```
 workTime - time for context to live
+
+#### sync
+```sync.WaitGroup()``` - struct with counter inside
+```waitgroup.Wait()``` - stop execution till counter in WaitGroup equal to zero
+```waitgroup.Done()``` - decrement counter
+
+```sync.Mutex()```
+```mutex.Lock()``` - get mutex
+```mutex.Unlock()``` - release mutex
+
+```sync\atomic``` - package for atomic operations (build in)
+```atomic.AddInt32()```
