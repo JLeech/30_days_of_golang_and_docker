@@ -183,3 +183,15 @@ workTime - time for context to live
 
 ```sync\atomic``` - package for atomic operations (build in)
 ```atomic.AddInt32()```
+
+### JSON
+
+```string, _ = json.Marshal(struct)```
+```struct, _ = json.Unmarshal(string)```
+Check Public/Private access
+```
+type X struct{
+	val int \`json:"value, string" \` // change representation for json
+}
+```
+
