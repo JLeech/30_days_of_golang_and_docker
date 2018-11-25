@@ -34,16 +34,25 @@ import "fmt"
 // 	fmt.Println(sum3(10))
 // }
 
-type newStr struct {
-	Id 	int
-	Id2 int
-}
-func main(){
-var obj newStr = newStr{
-	Id: 1,
-}
-ss := newStr{1,2}
+// type newStr struct {
+// 	Id 	int
+// 	Id2 int
+// }
+// func main(){
+// var obj newStr = newStr{
+// 	Id: 1,
+// }
+// ss := newStr{1,2}
 
-fmt.Println(obj)
-fmt.Println(ss)
+// fmt.Println(obj)
+// fmt.Println(ss)
+// }
+
+func main(){
+	a := new([]int)
+	fmt.Println(&a)
+	*a = append(*a, 3)
+	fmt.Println(&a)
+	fmt.Println(*a)
+
 }

@@ -127,6 +127,14 @@ if smt starts with Capital letter - it is exported(public), otherwise private
 cast interface to inner struct: interface.(structName). It is possible to cast interface to interface.
 [Interfaces/readtomorrow](https://www.tapirgames.com/blog/golang-interface-implementation)
 
+### make/new var
+
+make - for slices/maps/channels
+```
+s := make([]int, 10, 100)
+````
+new - allocate and zero memory, return pointer
+
 ### Garbage Collector
 concurrent/tri-color/mark-sweep
 **concurrent**:  ~no stop of the world 
